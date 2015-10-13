@@ -14,10 +14,10 @@
 $protocolo = "http".((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "s" : "") . "://";
 $server = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : $_SERVER['SERVER_NAME'];
 
-$config['base_url']	= $protocolo.$server.'/cobalto-php/';
+$config['base_url']	= $protocolo.$server.'/';
 
 define('BASE_URL', $config['base_url']);
-define('PATH_COOKIE', '/cobalto-php');
+define('PATH_COOKIE', '/');
 define('IMG', $config['base_url'].'static/_img');
 define('CSS', $config['base_url'].'static/_css');
 define('JS', $config['base_url'].'static/_js');
