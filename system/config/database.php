@@ -39,9 +39,9 @@ $active_group = "default";
 $active_record = TRUE;
 
 $db['default']['hostname'] = "localhost";
-$db['default']['username'] = "postgres";
-$db['default']['password'] = "postgres";
-$db['default']['database'] = "cophp";
+$db['default']['username'] = "cobalto-desenv";
+$db['default']['password'] = "cobalto-desenv";
+$db['default']['database'] = "cobalto-desenv";
 $db['default']['dbdriver'] = "postgre";
 $db['default']['dbprefix'] = "";
 $db['default']['pconnect'] = FALSE;

@@ -8,16 +8,12 @@ vagrantfile:
         cpus: '1'
         chosen_provider: virtualbox
         network:
-            private_network: 192.168.56.101
             forwarded_port:
-                vflnp_g48ore3hda5a:
-                    host: '9846'
-                    guest: '22'
                 vflnp_q27mh7vyxoi2:
                     host: '8080'
                     guest: '80'
                 vflnp_dj05y6zru966:
-                    host: '6543'
+                    host: '54320'
                     guest: '5432'
         post_up_message: ''
         provider:
@@ -213,6 +209,7 @@ php:
         pecl: {  }
     ini:
         display_errors: 'On'
+        short_open_tag: 'On'
         error_reporting: '-1'
         session.save_path: /var/lib/php/session
         date.timezone: UTC
@@ -333,19 +330,19 @@ postgresql:
             encoding: UTF8
             version: '9.3'
         server:
-            postgres_password: cobalto
+            postgres_password: cobalto-desenv
     databases:
         postsqlnd_9adi1s7wojm9:
             dbname: cobalto-desenv
-            owner: cobalto
+            owner: cobalto-desenv
     users:
         postsqlnu_godeh5vc1q4j:
-            username: cobalto
-            password: cobalto
+            username: cobalto-desenv
+            password: cobalto-desenv
             superuser: '1'
     grants:
         postsqlng_u4v8muc9brc3:
-            role: cobalto
+            role: cobalto-desenv
             db: cobalto-desenv
             privilege:
                 - ALL

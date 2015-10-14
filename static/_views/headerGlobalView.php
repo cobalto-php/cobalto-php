@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<?			
+		<?
 			if(!isset($path_bread)){
 				$path_bread = '';
 			}
@@ -51,19 +51,19 @@
 			</div>
 			<div id="buscar-menu-horizontal" style="padding: 3px 0px 3px 0px; float: left; margin: 0px;">
 				<div style="height: 22px; width: 25px; margin: 0px -1px 0px 0px; display: block; float: left; position: relative; padding: 0; text-decoration: none !important; text-align: center; zoom: 1; overflow: visible; border-right: none;" class="ui-widget ui-state-default ui-corner-tl ui-corner-bl ui-button-icon-only"><span class=" ui-icon ui-icon-search"></span></div>
-				<input type="text" name="txtBuscaMenu" id="txtBuscaMenu" value="buscar no menu" maxlength="" class="ui-state-default ui-corner-tr ui-corner-br" style="margin-bottom: 0px; width:194px;">			
+				<input type="text" name="txtBuscaMenu" id="txtBuscaMenu" value="buscar no menu" maxlength="" class="ui-state-default ui-corner-tr ui-corner-br" style="margin-bottom: 0px; width:194px;">
 			</div>
 			<div style="clear: both;"><!-- --></div>
 		</div>
 		<span style="clear:both;"><!-- --></span>
 
-		<div class="ui-layout-west ui-widget ui-widget-content <?=(@$_COOKIE['showMenu'] == 'false' ? 'closed' : '');?>" style="padding-left: 0px; padding-right: 0px; background: none !important; float: left; width: 200px; overflow:hidden !important; <?=(@$_COOKIE['showMenu'] == 'false' ? 'display: none;' : 'display: block;');?>">			
-			<ul id="menu" class="ui-widget treeview treeview-gray" style="background: none !important; background-color:none !important; overflow: auto !important; margin-top: 2px;">				
-				<ul style="background: none !important;"> 
+		<div class="ui-layout-west ui-widget ui-widget-content <?=(@$_COOKIE['showMenu'] == 'false' ? 'closed' : '');?>" style="padding-left: 0px; padding-right: 0px; background: none !important; float: left; width: 200px; overflow:hidden !important; <?=(@$_COOKIE['showMenu'] == 'false' ? 'display: none;' : 'display: block;');?>">
+			<ul id="menu" class="ui-widget treeview treeview-gray" style="background: none !important; background-color:none !important; overflow: auto !important; margin-top: 2px;">
+				<ul style="background: none !important;">
 					<?=isset($this->session)?$this->session->userdata('menu'):"";?>
 				</ul>
-			</ul>		
-		</div>		
+			</ul>
+		</div>
 		<div id="content-center" class="ui-layout-center ui-widget-content" style="background: none !important; overflow: hidden !important">
 <?	}else{ ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
@@ -72,6 +72,6 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<?=$this->load->view('../../static/_views/headerScripts');?>
 	</head>
-	<body class="ui-widget-content" style="border:none !important; margin:0px !important;">		
+	<body class="ui-widget-content" style="border:none !important; margin:0px !important;">
 		<div id="content-center" class="ui-layout-center ui-widget-content content-center-popup" style="border-left: none !important; margin-left: 0px; background: none !important; overflow: hidden !important">
 <?	} ?>

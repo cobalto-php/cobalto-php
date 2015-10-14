@@ -47,22 +47,20 @@ class postgresql::server::config {
       }
       postgresql::server::pg_hba_rule { 'local access to database with same name':
         type        => 'local',
-        auth_method => 'ident',
+        auth_method => 'md5',
         auth_option => $local_auth_option,
         order       => '002',
       }
       postgresql::server::pg_hba_rule { 'allow localhost TCP access to postgresql user':
         type        => 'host',
-        user        => $user,
         address     => '127.0.0.1/32',
         auth_method => 'md5',
         order       => '003',
       }
-      postgresql::server::pg_hba_rule { 'deny access to postgresql user':
+      postgresql::server::pg_hba_rule { 'allow access to postgresql user':
         type        => 'host',
-        user        => $user,
         address     => $ip_mask_deny_postgres_user,
-        auth_method => 'reject',
+        auth_method => 'md5',
         order       => '004',
       }
 
