@@ -1,0 +1,13 @@
+static/jasper_report_generate/JasperReportGenerate.jar
+system/config/config.php
+system/config/database.php
+system/config/mongodb.php
+system/config/phinx.php
+settings_jasper.properties
+info.php
+.vagrant
+.settings
+.project
+.pydevproject
+Vagrantfile
+
