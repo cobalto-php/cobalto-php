@@ -1,6 +1,6 @@
 {
     "require": {
-        "robmorgan/phinx": "*"
+    	"robmorgan/phinx": "0.3.7",
+        "php-activerecord/php-activerecord": "v1.1.2"
     }
 }
-

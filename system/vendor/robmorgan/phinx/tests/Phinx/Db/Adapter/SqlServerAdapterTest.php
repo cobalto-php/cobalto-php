@@ -493,10 +493,8 @@ class SqlServerAdapterTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('boolean', $this->adapter->getPhinxType('bit'));
 
-        $this->assertEquals('string', $this->adapter->getPhinxType('varchar'));
         $this->assertEquals('string', $this->adapter->getPhinxType('nvarchar'));
-        $this->assertEquals('char', $this->adapter->getPhinxType('char'));
-        $this->assertEquals('char', $this->adapter->getPhinxType('nchar'));
+        $this->assertEquals('string', $this->adapter->getPhinxType('char'));
 
         $this->assertEquals('text', $this->adapter->getPhinxType('text'));
 

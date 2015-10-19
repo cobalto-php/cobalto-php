@@ -14,9 +14,7 @@ class MigrateTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->config = new Config(array(
-            'paths' => array(
-                'migrations' => __FILE__,
-            ),
+            'paths' => array(),
             'environments' => array(
                 'default_migration_table' => 'phinxlog',
                 'default_database' => 'development',

@@ -136,13 +136,10 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('dev', $config->getDefaultEnvironment());
     }
 
-    /**
-     * @expectedException UnexpectedValueException
-     */
-    public function testGetMigrationPathThrowsExceptionForNoPath()
+    public function testGetMigrationPathReturnsNullForNoPath()
     {
         $config = new \Phinx\Config\Config(array());
-        $config->getMigrationPath();
+        $this->assertNull($config->getMigrationPath());
     }
     
     public function testArrayAccessMethods()

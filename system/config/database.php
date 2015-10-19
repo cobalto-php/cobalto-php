@@ -51,5 +51,16 @@ $db['default']['cachedir'] = "";
 $db['default']['char_set'] = "utf8";
 $db['default']['dbcollat'] = "utf8_general_ci";
 
+ActiveRecord\Config::initialize(function($cfg) use ($db, $active_group)
+{
+    $cfg->set_connections([$active_group => "pgsql://{$db[$active_group]['username']}:{$db[$active_group]['password']}@{$db[$active_group]['hostname']}/{$db[$active_group]['database']}".(isset($db[$active_group]['port']) ? ";port={$db[$active_group]['port']}" : "") ]);
+    $cfg->set_default_connection($active_group);
+    $cfg->set_logging(true);
+    $cfg->set_logger(new CI_Log());
+});
+
+ActiveRecord\DateTime::$DEFAULT_FORMAT = 'db';
+ActiveRecord\Connection::$datetime_format = 'Y-m-d H:i:s';
+
 /* End of file database.php */
 /* Location: ./system/application/config/database.php */

@@ -236,20 +236,11 @@ class Config implements \ArrayAccess
      */
     public function getMigrationPath()
     {
-        if (!isset($this->values['paths']['migrations'])) {
-            throw new \UnexpectedValueException('Migrations path missing from config file');
+        if (isset($this->values['paths']['migrations'])) {
+            return realpath($this->values['paths']['migrations']);
         }
-
-        $path = realpath($this->values['paths']['migrations']);
-
-        if ($path === false) {
-            throw new \UnexpectedValueException(sprintf(
-                'Migrations directory "%s" does not exist',
-                $this->values['paths']['migrations']
-            ));
-        }
-
-        return $path;
+        
+        return null;
     }
     
     /**

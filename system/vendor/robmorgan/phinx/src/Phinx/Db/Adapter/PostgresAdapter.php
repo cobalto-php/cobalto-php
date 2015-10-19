@@ -700,8 +700,6 @@ class PostgresAdapter extends PdoAdapter implements AdapterInterface
                 return array('name' => $type);
             case static::PHINX_TYPE_STRING:
                 return array('name' => 'character varying', 'limit' => 255);
-            case static::PHINX_TYPE_CHAR:
-                return array('name' => 'character', 'limit' => 255);
             case static::PHINX_TYPE_BIG_INTEGER:
                 return array('name' => 'bigint');
             case static::PHINX_TYPE_FLOAT:
@@ -711,22 +709,6 @@ class PostgresAdapter extends PdoAdapter implements AdapterInterface
                 return array('name' => 'timestamp');
             case static::PHINX_TYPE_BINARY:
                 return array('name' => 'bytea');
-            // Geospatial database types
-            // Spatial storage in Postgres is done via the PostGIS extension,
-            // which enables the use of the "geography" type in combination
-            // with SRID 4326.
-            case static::PHINX_TYPE_GEOMETRY:
-                return array('name' => 'geography', 'geometry', 4326);
-                break;
-            case static::PHINX_TYPE_POINT:
-                return array('name' => 'geography', 'point', 4326);
-                break;
-            case static::PHINX_TYPE_LINESTRING:
-                return array('name' => 'geography', 'linestring', 4326);
-                break;
-            case static::PHINX_TYPE_POLYGON:
-                return array('name' => 'geography', 'polygon', 4326);
-                break;
             default:
                 throw new \RuntimeException('The type: "' . $type . '" is not supported');
         }
@@ -744,9 +726,6 @@ class PostgresAdapter extends PdoAdapter implements AdapterInterface
             case 'character varying':
             case 'varchar':
                 return static::PHINX_TYPE_STRING;
-            case 'character':
-            case 'char':
-                return static::PHINX_TYPE_CHAR;
             case 'text':
             case 'json':
                 return static::PHINX_TYPE_TEXT;
@@ -862,7 +841,7 @@ class PostgresAdapter extends PdoAdapter implements AdapterInterface
     protected function getColumnCommentSqlDefinition(Column $column, $tableName)
     {
         // passing 'null' is to remove column comment
-        $comment = (strcasecmp($column->getComment(), 'NULL') !== 0)
+        $comment = (strtoupper($column->getComment()) != 'NULL')
                  ? $this->getConnection()->quote($column->getComment())
                  : 'NULL';
 
@@ -948,7 +927,7 @@ class PostgresAdapter extends PdoAdapter implements AdapterInterface
       */
     public function migrated(MigrationInterface $migration, $direction, $startTime, $endTime)
     {
-        if (strcasecmp($direction, MigrationInterface::UP) === 0) {
+        if (strtolower($direction) == 'up') {
             // up
             $sql = sprintf(
                 "INSERT INTO %s (version, start_time, end_time) VALUES ('%s', '%s', '%s');",

@@ -321,7 +321,7 @@ abstract class PdoAdapter implements AdapterInterface
      */
     public function migrated(MigrationInterface $migration, $direction, $startTime, $endTime)
     {
-        if (strcasecmp($direction, MigrationInterface::UP) === 0) {
+        if (strtolower($direction) == MigrationInterface::UP) {
             // up
             $sql = sprintf(
                 'INSERT INTO %s ('
@@ -396,7 +396,6 @@ abstract class PdoAdapter implements AdapterInterface
     {
         return array(
             'string',
-            'char',
             'text',
             'integer',
             'biginteger',
@@ -407,12 +406,7 @@ abstract class PdoAdapter implements AdapterInterface
             'time',
             'date',
             'binary',
-            'boolean',
-            // Geospatial data types
-            'geometry',
-            'point',
-            'linestring',
-            'polygon',
+            'boolean'
         );
     }
 }
