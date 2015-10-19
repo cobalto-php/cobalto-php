@@ -27,7 +27,40 @@
 |
 */
 
+require_once BASEPATH.'vendor/autoload'.EXT;
+// require_once BASEPATH.'libraries/CobaltoTrait'.EXT;
 
+class ClassLoader
+{
+
+	private static $search_paths = [
+		"autenticacao", "dashboard", "exemplo", "gerenciador", "util"
+   	];
+
+   public static function loader($class_name)
+   {
+       if (substr($class_name, (strlen($class_name)-3), 3) == 'ORM'){
+           require_once self::files_mapper()[$class_name];
+       }
+   }
+
+   private static function files_mapper()
+   {
+       $files_mapper = [];
+       $base_path = str_replace(['system', '../system'], '', BASEPATH);
+       foreach (self::$search_paths as $search_path){
+           foreach (glob($base_path.$search_path.'/models/*/*ORM'.EXT) as $file){
+               $files_mapper[basename($file, EXT)] = $file;
+           }
+           foreach (glob($base_path.$search_path.'/models/*ORM'.EXT) as $file){
+               $files_mapper[basename($file, EXT)] = $file;
+           }
+       }
+       return $files_mapper;
+   }
+}
+
+spl_autoload_register('ClassLoader::loader');
 
 /*
 | -------------------------------------------------------------------
