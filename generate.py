@@ -26,7 +26,7 @@ class Application:
         self.create_files_languages()
 
     # cria o diretório principal da aplicação
-    def create_folder_main_application(self):        
+    def create_folder_main_application(self):
         if not os.path.exists(self.path_application):
             print self.path_application
             os.mkdir(self.path_application)
@@ -49,13 +49,13 @@ class Application:
         file_messages_lang = open(os.path.join(self.path_application, 'language/pt-br/'+self.application+'_messages_lang.php'), 'w')
         file_messages_lang.write(str_messages_language)
         file_messages_lang.close()
-        
-        str_autoload = "<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');\n"        
+
+        str_autoload = "<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');\n"
         str_autoload+= "include BASEPATH.'config/autoload.php';\n"
         str_autoload+= "array_push($autoload['language'], '"+self.application+"_labels');\n"
         str_autoload+= "array_push($autoload['language'], '"+self.application+"_messages');\n"
         file_autoload = open(os.path.join(self.path_application, 'config/autoload.php'), 'w')
-        file_autoload.write(str_autoload);                        
+        file_autoload.write(str_autoload);
         file_autoload.close()
 
     def create_files_application(self):
@@ -66,7 +66,7 @@ class Application:
 
         # cria e adiciona o script padrão para os arquivos index.html
         for file_index in self.files_index:
-            print os.path.join(self.path_application, file_index)    
+            print os.path.join(self.path_application, file_index)
             str_index_html = "<html>\n"
             str_index_html+= "    <head>\n"
             str_index_html+= "        <title>403 Forbidden</title>\n"
@@ -78,10 +78,10 @@ class Application:
             file_index_html = open(os.path.join(self.path_application, file_index), 'w')
             file_index_html.write(str_index_html)
             file_index_html.close()
-        
+
         # cria e adiciona o script padrão para os arquivos .htaccess
         for file_htaccess in self.files_htaccess:
-            print os.path.join(self.path_application, file_htaccess)    
+            print os.path.join(self.path_application, file_htaccess)
             str_htaccess = "deny from all"
             file = open(os.path.join(self.path_application, file_htaccess), 'w')
             file.write(str_htaccess)
@@ -95,7 +95,7 @@ class Application:
         # cria os arquivos e adiciona o script padrão de cada arquivo
         for file_config in self.files_config:
             print os.path.join(self.path_application, file_config)
-            str_config = "<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');\n"            
+            str_config = "<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');\n"
             str_config+= "include BASEPATH.'"+file_config+"';"
             file = open(os.path.join(self.path_application, file_config), 'w')
             file.write(str_config)
@@ -116,7 +116,7 @@ class Application:
         str_htaccess+= "    RewriteRule ^(.*)$ /index.php/$1 [L]\n"
         str_htaccess+= "    RewriteCond %{REQUEST_FILENAME} !-f\n"
         str_htaccess+= "    RewriteCond %{REQUEST_FILENAME} !-d\n"
-        str_htaccess+= "    RewriteRule ^(.*)$ index.php?/$1 [L]\n"
+        str_htaccess+= "    RewriteRule ^(.*)$ index.php/$1 [L]\n"
         str_htaccess+= "    Options -Indexes\n"
         str_htaccess+= "    <files all-wcprops>\n"
         str_htaccess+= "        order allow,deny\n"
@@ -135,9 +135,9 @@ class Application:
         str_htaccess+= "    AddOutputFilterByType DEFLATE application/xhtml+xml\n"
         str_htaccess+= "    AddOutputFilterByType DEFLATE application/rss+xml\n"
         str_htaccess+= "    AddOutputFilterByType DEFLATE application/javascript\n"
-        str_htaccess+= "    AddOutputFilterByType DEFLATE application/x-javascript\n"       
+        str_htaccess+= "    AddOutputFilterByType DEFLATE application/x-javascript\n"
         str_htaccess+= "</IfModule>\n\n"
-        
+
         str_htaccess+= "<IfModule !mod_rewrite.c>\n"
         str_htaccess+= "    ErrorDocument 404 /index.php\n"
         str_htaccess+= "</IfModule>\n"
@@ -153,7 +153,7 @@ class Application:
         shutil.copy2(os.path.join(PROJECT_ROOT_PATH, 'static/samples_generate/error_php.php'), os.path.join(self.path_application, 'errors/error_php.php'))
         shutil.copy2(os.path.join(PROJECT_ROOT_PATH, 'static/samples_generate/Filter.php'), os.path.join(self.path_application, 'hooks/filters/Filter.php'))
         shutil.copy2(os.path.join(PROJECT_ROOT_PATH, 'static/samples_generate/init.php'), os.path.join(self.path_application, 'hooks/filters/init.php'))
-        shutil.copy2(os.path.join(PROJECT_ROOT_PATH, 'static/samples_generate/Pipe.php'), os.path.join(self.path_application, 'hooks/filters/Pipe.php'))        
+        shutil.copy2(os.path.join(PROJECT_ROOT_PATH, 'static/samples_generate/Pipe.php'), os.path.join(self.path_application, 'hooks/filters/Pipe.php'))
 
 if __name__ == "__main__":
     name_application = raw_input("Application Name: ")
